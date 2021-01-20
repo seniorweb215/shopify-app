@@ -34,15 +34,17 @@ Route::middleware(['auth'])->group(function() {
     })->middleware(['role:supplier,retailer'])->name('dashboard');
 
     Route::prefix('supplier')->middleware(['role:supplier'])->group(function() {
-        Route::get('/dashboard', function() {
-            echo 'supplier dashboard';
-        });
+        // Route::get('/dashboard', function() {
+        //     echo 'supplier dashboard';
+        // });
+        Route::get('/dashboard', 'App\Http\Controllers\Supplier\DashboardController@index');
     });
 
     Route::prefix('retailer')->middleware(['role:retailer'])->group(function() {
-        Route::get('/dashboard', function() {
-            echo 'retailer dashboard';
-        });
+        // Route::get('/dashboard', function() {
+        //     echo 'retailer dashboard';
+        // });
+        Route::get('/dashboard', 'App\Http\Controllers\Retailer\DashboardController@index');
     });
 });
 

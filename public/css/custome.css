@@ -1,0 +1,10 @@
+.kt-aside__brand .kt-aside__brand-logo img {
+    width: 100%;
+    padding: 0 10px;
+}
+@media (max-width: 1024px) {
+    .kt-header-mobile .kt-header-mobile__logo img {
+        max-width: 130px;
+        width: 100%;
+    }
+}
