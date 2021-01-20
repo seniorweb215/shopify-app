@@ -14,7 +14,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $data = ['info' => 'I am Supplier Dashboard page'];
+        $data = [
+            'info' => 'I am Supplier Dashboard page',
+            'link' => 'supplier/dashboard'
+        ];
         return view('pages.dashboard', $data);
     }
 

@@ -263,7 +263,7 @@
                 <form>
 
                     <!--begin: Head -->
-                    <div class="kt-head kt-head--skin-dark kt-head--fit-x kt-head--fit-b" style="background-image: url(assets/media/misc/bg-1.jpg)">
+                    <div class="kt-head kt-head--skin-dark kt-head--fit-x kt-head--fit-b" style="background-image: url({{ asset('media/bg-1.jpg') }})">
                         <h3 class="kt-head__title">
                             User Notifications
                             &nbsp;
@@ -665,7 +665,7 @@
                 <form>
 
                     <!--begin: Head -->
-                    <div class="kt-head kt-head--skin-dark" style="background-image: url(assets/media/misc/bg-1.jpg)">
+                    <div class="kt-head kt-head--skin-dark" style="background-image: url({{ asset('media/bg-1.jpg') }})">
                         <h3 class="kt-head__title">
                             User Quick Actions
                             <span class="kt-space-15"></span>
@@ -755,7 +755,7 @@
 
                     <!-- begin:: Mycart -->
                     <div class="kt-mycart">
-                        <div class="kt-mycart__head kt-head" style="background-image: url(assets/media/misc/bg-1.jpg);">
+                        <div class="kt-mycart__head kt-head" style="background-image: url({{ asset('media/bg-1.jpg') }});">
                             <div class="kt-mycart__info">
                                 <span class="kt-mycart__icon"><i class="flaticon2-shopping-cart-1 kt-font-success"></i></span>
                                 <h3 class="kt-mycart__title">My Cart</h3>
@@ -783,7 +783,7 @@
                                         </div>
                                     </div>
                                     <a href="#" class="kt-mycart__pic">
-                                        <img src="assets/media/products/product9.jpg" title="">
+                                        <img src="{{ asset('media/product9.jpg') }}" title="">
                                     </a>
                                 </div>
                             </div>
@@ -805,7 +805,7 @@
                                         </div>
                                     </div>
                                     <a href="#" class="kt-mycart__pic">
-                                        <img src="assets/media/products/product13.jpg" title="">
+                                        <img src="{{ asset('media/product13.jpg') }}" title="">
                                     </a>
                                 </div>
                             </div>
@@ -827,7 +827,7 @@
                                         </div>
                                     </div>
                                     <a href="#" class="kt-mycart__pic">
-                                        <img src="assets/media/products/product16.jpg" title="">
+                                        <img src="{{ asset('media/product16.jpg') }}" title="">
                                     </a>
                                 </div>
                             </div>
@@ -849,7 +849,7 @@
                                         </div>
                                     </div>
                                     <a href="#" class="kt-mycart__pic">
-                                        <img src="assets/media/products/product15.jpg" title="" alt="">
+                                        <img src="{{ asset('media/product15.jpg') }}" title="" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -881,7 +881,7 @@
         <!--end: My Cart -->
 
         <!--begin: Quick panel toggler -->
-        <div class="kt-header__topbar-item kt-header__topbar-item--quick-panel" data-toggle="kt-tooltip" title="Quick panel" data-placement="right">
+        <!-- <div class="kt-header__topbar-item kt-header__topbar-item--quick-panel" data-toggle="kt-tooltip" title="Quick panel" data-placement="right">
             <span class="kt-header__topbar-icon" id="kt_quick_panel_toggler_btn">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -890,12 +890,12 @@
                         <path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" fill="#000000" opacity="0.3" />
                     </g>
                 </svg> </span>
-        </div>
+        </div> -->
 
         <!--end: Quick panel toggler -->
 
         <!--begin: Language bar -->
-        <div class="kt-header__topbar-item kt-header__topbar-item--langs">
+        <!-- <div class="kt-header__topbar-item kt-header__topbar-item--langs">
             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
                 <span class="kt-header__topbar-icon">
                     <img class="" src="assets/media/flags/226-united-states.svg" alt="" />
@@ -923,7 +923,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> -->
 
         <!--end: Language bar -->
 
@@ -932,104 +932,45 @@
             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
                 <div class="kt-header__topbar-user">
                     <span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-                    <span class="kt-header__topbar-username kt-hidden-mobile">Sean</span>
-                    <img class="kt-hidden" alt="Pic" src="assets/media/users/300_25.jpg" />
+                    <span class="kt-header__topbar-username kt-hidden-mobile">{{ Auth::user()->name }}</span>
+                    <img class="" alt="Pic" src="{{ asset('media/300_25.jpg') }}" />
 
                     <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-                    <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">S</span>
+                    <span class="kt-hidden kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">S</span>
                 </div>
             </div>
             <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
-
-                <!--begin: Head -->
-                <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(assets/media/misc/bg-1.jpg)">
-                    <div class="kt-user-card__avatar">
-                        <img class="kt-hidden" alt="Pic" src="assets/media/users/300_25.jpg" />
-
-                        <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-                        <span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">S</span>
-                    </div>
-                    <div class="kt-user-card__name">
-                        Sean Stone
-                    </div>
-                    <div class="kt-user-card__badge">
-                        <span class="btn btn-success btn-sm btn-bold btn-font-md">23 messages</span>
-                    </div>
-                </div>
-
-                <!--end: Head -->
-
                 <!--begin: Navigation -->
                 <div class="kt-notification">
-                    <a href="custom/apps/user/profile-1/personal-information.html" class="kt-notification__item">
+                    <a href="{{ route('profile') }}" class="kt-notification__item">
                         <div class="kt-notification__item-icon">
                             <i class="flaticon2-calendar-3 kt-font-success"></i>
                         </div>
                         <div class="kt-notification__item-details">
                             <div class="kt-notification__item-title kt-font-bold">
-                                My Profile
+                                {{ __('My Profile') }}
                             </div>
                             <div class="kt-notification__item-time">
                                 Account settings and more
                             </div>
                         </div>
                     </a>
-                    <a href="custom/apps/user/profile-3.html" class="kt-notification__item">
-                        <div class="kt-notification__item-icon">
-                            <i class="flaticon2-mail kt-font-warning"></i>
-                        </div>
-                        <div class="kt-notification__item-details">
-                            <div class="kt-notification__item-title kt-font-bold">
-                                My Messages
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}" class="kt-notification__item" onclick="event.preventDefault(); this.closest('form').submit();">
+                            <div class="kt-notification__item-icon">
+                                <i class="fas fa-power-off mr-2"></i>
                             </div>
-                            <div class="kt-notification__item-time">
-                                Inbox and tasks
+                            <div class="kt-notification__item-details">
+                                <div class="kt-notification__item-title kt-font-bold">
+                                    {{ __('Logout') }}
+                                </div>
+                                <div class="kt-notification__item-time">
+                                    Logout from system
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <a href="custom/apps/user/profile-2.html" class="kt-notification__item">
-                        <div class="kt-notification__item-icon">
-                            <i class="flaticon2-rocket-1 kt-font-danger"></i>
-                        </div>
-                        <div class="kt-notification__item-details">
-                            <div class="kt-notification__item-title kt-font-bold">
-                                My Activities
-                            </div>
-                            <div class="kt-notification__item-time">
-                                Logs and notifications
-                            </div>
-                        </div>
-                    </a>
-                    <a href="custom/apps/user/profile-3.html" class="kt-notification__item">
-                        <div class="kt-notification__item-icon">
-                            <i class="flaticon2-hourglass kt-font-brand"></i>
-                        </div>
-                        <div class="kt-notification__item-details">
-                            <div class="kt-notification__item-title kt-font-bold">
-                                My Tasks
-                            </div>
-                            <div class="kt-notification__item-time">
-                                latest tasks and projects
-                            </div>
-                        </div>
-                    </a>
-                    <a href="custom/apps/user/profile-1/overview.html" class="kt-notification__item">
-                        <div class="kt-notification__item-icon">
-                            <i class="flaticon2-cardiogram kt-font-warning"></i>
-                        </div>
-                        <div class="kt-notification__item-details">
-                            <div class="kt-notification__item-title kt-font-bold">
-                                Billing
-                            </div>
-                            <div class="kt-notification__item-time">
-                                billing & statements <span class="kt-badge kt-badge--danger kt-badge--inline kt-badge--pill kt-badge--rounded">2 pending</span>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="kt-notification__custom kt-space-between">
-                        <a href="custom/user/login-v2.html" target="_blank" class="btn btn-label btn-label-brand btn-sm btn-bold">Sign Out</a>
-                        <a href="custom/user/login-v2.html" target="_blank" class="btn btn-clean btn-sm btn-bold">Upgrade Plan</a>
-                    </div>
+                        </a>
+                    </form>
                 </div>
 
                 <!--end: Navigation -->

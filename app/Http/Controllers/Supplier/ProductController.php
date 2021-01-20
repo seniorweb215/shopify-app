@@ -14,7 +14,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'info' => 'I am Supplier Product page',
+            'link' => 'supplier/product'
+        ];
+        return view('pages.product', $data);
     }
 
     /**

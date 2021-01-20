@@ -14,7 +14,11 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'info' => 'I am Supplier Category page',
+            'link' => 'supplier/category'
+        ];
+        return view('pages.collection', $data);
     }
 
     /**

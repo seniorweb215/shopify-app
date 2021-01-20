@@ -38,6 +38,9 @@ Route::middleware(['auth'])->group(function() {
         //     echo 'supplier dashboard';
         // });
         Route::get('/dashboard', 'App\Http\Controllers\Supplier\DashboardController@index');
+        Route::get('/product', 'App\Http\Controllers\Supplier\ProductController@index');
+        Route::get('/category', 'App\Http\Controllers\Supplier\CollectionController@index');
+        Route::get('/profile', 'App\Http\Controllers\Supplier\ProfileController@index')->name('profile');
     });
 
     Route::prefix('retailer')->middleware(['role:retailer'])->group(function() {

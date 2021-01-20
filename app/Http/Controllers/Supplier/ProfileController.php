@@ -14,7 +14,11 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'info' => 'I am Supplier Profile page',
+            'link' => 'supplier/profile'
+        ];
+        return view('pages.profile', $data);
     }
 
     /**
