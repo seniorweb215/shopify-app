@@ -6,3 +6,9 @@
     </div>
 </div>
 @endsection
+
+@section('page_script')
+<!--begin::Page Scripts(used by this page) -->
+<!-- <script src="{{ asset('js/data-json.js  ') }}" defer></script> -->
+<!--end::Page Scripts -->
+@endsection

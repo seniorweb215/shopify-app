@@ -60,15 +60,6 @@
     <script src="{{ asset('plugins/global/plugins.bundle.js') }}" defer></script>
     <script src="{{ asset('js/scripts.bundle.js') }}" defer></script>
     <!--end::Global Theme Bundle -->
-
-    <!--begin::Page Vendors(used by this page) -->
-    <script src="{{ asset('plugins/fullcalendar/fullcalendar-bundle.js') }}" defer></script>
-    <!-- <script src="//maps.google.com/maps/api/js?key=AIzaSyBTGnKT7dt597vo9QgeQ7BFhvSRP4eiMSM" type="text/javascript"></script> -->
-    <!-- <script src="assets/plugins/custom/gmaps/gmaps.js" type="text/javascript"></script> -->
-    <!--end::Page Vendors -->
-
-    <!--begin::Page Scripts(used by this page) -->
-    <script src="{{ asset('js/dashboard.js') }}" defer></script>
-    <!--end::Page Scripts -->
+    @yield('page_script')
 </body>
 </html>

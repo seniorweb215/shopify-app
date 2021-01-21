@@ -2,6 +2,9 @@
     width: 100%;
     padding: 0 10px;
 }
+.category-action .col-md-6 {
+    margin: 0 auto;
+}
 @media (max-width: 1024px) {
     .kt-header-mobile .kt-header-mobile__logo img {
         max-width: 130px;

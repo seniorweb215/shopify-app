@@ -932,11 +932,11 @@
             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
                 <div class="kt-header__topbar-user">
                     <span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-                    <span class="kt-header__topbar-username kt-hidden-mobile">{{ Auth::user()->name }}</span>
-                    <img class="" alt="Pic" src="{{ asset('media/300_25.jpg') }}" />
-
+                    <span class="kt-header__topbar-username kt-hidden-mobile"><?php echo $user_name = Auth::user()->name; ?></span>
+                    <img class="kt-hidden " alt="Pic" src="{{ asset('media/300_25.jpg') }}" />
+                    <!-- {{ Auth::user()->name }} -->
                     <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
-                    <span class="kt-hidden kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">S</span>
+                    <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold"><?php echo substr($user_name, 0, 1) ?></span>
                 </div>
             </div>
             <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">

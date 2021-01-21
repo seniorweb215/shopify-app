@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Supplier;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CollectionController extends Controller
 {
@@ -14,9 +14,11 @@ class CollectionController extends Controller
      */
     public function index()
     {
+        $categoryData = Category::getData();
         $data = [
             'info' => 'I am Supplier Category page',
-            'link' => 'supplier/category'
+            'link' => 'supplier/category',
+            'data_list' => $categoryData
         ];
         return view('pages.collection', $data);
     }
@@ -28,7 +30,11 @@ class CollectionController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'info' => 'I am Supplier Category add page',
+            'link' => 'supplier/category'
+        ];
+        return view('pages.add_collection', $data);
     }
 
     /**
@@ -39,7 +45,13 @@ class CollectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        unset($data['_token']);
+        $data['created_at'] = date('Y-m-d H:i:s');
+        $data['updated_at'] = date('Y-m-d H:i:s');
+        $return = Category::store($data);
+        return redirect('/supplier/category');
+        // print_r($return);exit;
     }
 
     /**
@@ -61,7 +73,13 @@ class CollectionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $row = Category::getRow($id);
+        $data = [
+            'info' => 'I am Supplier Category add page',
+            'link' => 'supplier/category',
+            'row' => $row
+        ];
+        return view('pages.edit_collection', $data);
     }
 
     /**
@@ -73,7 +91,12 @@ class CollectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        unset($data['_token']);
+        $data['updated_at'] = date('Y-m-d H:i:s');
+        
+        $updated = Category::updateRow($data, $id);
+        return redirect('/supplier/category');
     }
 
     /**
@@ -82,8 +105,10 @@ class CollectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $data = $request->all();
+        $return = Category::destroy($data['id']);
+        echo json_encode($return);
     }
 }

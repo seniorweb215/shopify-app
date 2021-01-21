@@ -39,7 +39,17 @@ Route::middleware(['auth'])->group(function() {
         // });
         Route::get('/dashboard', 'App\Http\Controllers\Supplier\DashboardController@index');
         Route::get('/product', 'App\Http\Controllers\Supplier\ProductController@index');
-        Route::get('/category', 'App\Http\Controllers\Supplier\CollectionController@index');
+        // collection
+        Route::get('/category', 'App\Http\Controllers\Supplier\CollectionController@index')->name('category');
+        Route::get('/category/create', 'App\Http\Controllers\Supplier\CollectionController@create')->name('category.create');
+        Route::get('/category/edit/{id}', 'App\Http\Controllers\Supplier\CollectionController@edit')->name('category.edit');
+
+        Route::post('/category/destroy', 'App\Http\Controllers\Supplier\CollectionController@destroy')->name('category.destory');
+        Route::post('/category/store', 'App\Http\Controllers\Supplier\CollectionController@store')->name('category.store');
+        Route::post('/category/update/{id}', 'App\Http\Controllers\Supplier\CollectionController@update')->name('category.update');
+        // product
+
+        // profile
         Route::get('/profile', 'App\Http\Controllers\Supplier\ProfileController@index')->name('profile');
     });
 
