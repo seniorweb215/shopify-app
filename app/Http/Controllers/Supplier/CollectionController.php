@@ -75,7 +75,7 @@ class CollectionController extends Controller
     {
         $row = Category::getRow($id);
         $data = [
-            'info' => 'I am Supplier Category add page',
+            'info' => 'I am Supplier Category edit page',
             'link' => 'supplier/category',
             'row' => $row
         ];

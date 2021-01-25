@@ -38,7 +38,6 @@ Route::middleware(['auth'])->group(function() {
         //     echo 'supplier dashboard';
         // });
         Route::get('/dashboard', 'App\Http\Controllers\Supplier\DashboardController@index');
-        Route::get('/product', 'App\Http\Controllers\Supplier\ProductController@index');
         // collection
         Route::get('/category', 'App\Http\Controllers\Supplier\CollectionController@index')->name('category');
         Route::get('/category/create', 'App\Http\Controllers\Supplier\CollectionController@create')->name('category.create');
@@ -48,7 +47,13 @@ Route::middleware(['auth'])->group(function() {
         Route::post('/category/store', 'App\Http\Controllers\Supplier\CollectionController@store')->name('category.store');
         Route::post('/category/update/{id}', 'App\Http\Controllers\Supplier\CollectionController@update')->name('category.update');
         // product
+        Route::get('/product', 'App\Http\Controllers\Supplier\ProductController@index')->name('product');
+        Route::get('/product/create', 'App\Http\Controllers\Supplier\ProductController@create')->name('product.create');
+        Route::get('/product/edit/{id}', 'App\Http\Controllers\Supplier\ProductController@edit')->name('product.edit');
 
+        Route::post('/product/store', 'App\Http\Controllers\Supplier\ProductController@store')->name('product.store');
+        Route::post('/product/update/{id}', 'App\Http\Controllers\Supplier\ProductController@update')->name('product.update');
+        Route::post('/product/destroy', 'App\Http\Controllers\Supplier\ProductController@destroy')->name('product.destory');
         // profile
         Route::get('/profile', 'App\Http\Controllers\Supplier\ProfileController@index')->name('profile');
     });

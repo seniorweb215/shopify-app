@@ -2,9 +2,24 @@
     width: 100%;
     padding: 0 10px;
 }
-.category-action .col-md-6 {
+.category-action .align-center {
     margin: 0 auto;
 }
+.table-max-column {
+    max-width: 180px;
+}
+.form-group .alert {
+    margin: 0;
+}
+.alert ul {
+    margin: 0;
+}
+/* .form-group.hidden {
+    display: none;
+} */
+/* label.red {
+    color: #fd397a;
+} */
 @media (max-width: 1024px) {
     .kt-header-mobile .kt-header-mobile__logo img {
         max-width: 130px;

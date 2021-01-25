@@ -3,7 +3,7 @@
 <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
     <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
         <div class="row category-action">
-            <div class="col-md-6">
+            <div class="col-md-6 align-center">
                 <!--begin::Portlet-->
                 <div class="kt-portlet">
                     <div class="kt-portlet__head">

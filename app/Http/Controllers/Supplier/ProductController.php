@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Supplier;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -14,9 +17,16 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $productData = DB::table('products')
+                        ->join('users', 'users.id', '=', 'products.supplier_id')
+                        ->join('categories', 'categories.id', '=', 'products.category_id')
+                        ->select('products.*', 'users.name', 'categories.category_name')
+                        ->get();
         $data = [
             'info' => 'I am Supplier Product page',
-            'link' => 'supplier/product'
+            'link' => 'supplier/product',
+            'data_list' => $productData
         ];
         return view('pages.product', $data);
     }
@@ -28,7 +38,14 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $category_list = DB::table('categories')->where('status', '1')->get();
+        $data = [
+            'info' => 'I am Supplier Product add page',
+            'link' => 'supplier/product',
+            'category_list' => $category_list
+
+        ];
+        return view('pages.add_product', $data);
     }
 
     /**
@@ -39,7 +56,34 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|unique:products,title', 
+            'price' => 'required|numeric|min:0', 
+            'category_id' => 'required|numeric|min:1',
+            'quantity' => 'required|numeric|min:1|',
+            'weight' => 'numeric|min:0',
+            'shipping_cost' => 'numeric|min:0',
+            'file' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $data = $request->all();
+
+        if ($request->file()) {
+            $origianlName = $request->file->getClientOriginalName();
+            $fileName = time().'_'.$origianlName;
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            
+            $data['file_name'] = $origianlName;
+            $data['file_path'] = '/storage/' . $filePath;
+        }
+        
+        $data['supplier_id'] = Auth::user()->id;
+        $data['created_at'] = date('Y-m-d H:i:s');
+        $data['updated_at'] = date('Y-m-d H:i:s');
+        unset($data['_token']);
+        unset($data['file']);
+        DB::table('products')->insert($data);
+        return redirect('/supplier/product');
     }
 
     /**
@@ -61,7 +105,17 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $category_list = DB::table('categories')->where('status', '1')->get();
+        $product_list = DB::table('products')->where('id', $id)->get();
+        $data = [
+            'info' => 'I am Supplier Product edit page',
+            'link' => 'supplier/product',
+            'category_list' => $category_list,
+            'row' => $product_list
+
+        ];
+        return view('pages.edit_product', $data);
     }
 
     /**
@@ -73,7 +127,37 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title' => 'required', 
+            'price' => 'required|numeric|min:0', 
+            'category_id' => 'required|numeric|min:1',
+            'quantity' => 'required|numeric|min:1|',
+            'weight' => 'numeric|min:0',
+            'shipping_cost' => 'numeric|min:0',
+            'file' => 'mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+        
+        $data = $request->all();
+        unset($data['_token']);
+        $data['supplier_id'] = Auth::user()->id;
+        $data['updated_at'] = date('Y-m-d H:i:s');
+
+        if ($request->file()) {
+            $col = DB::table('products')->select('file_path')->where('id', $id)->get();
+            unlink($col[0]->file_path);
+
+            $f = $data['file'];
+            unset($data['file']);
+
+            $origianlName = $f->getClientOriginalName();
+            $fileName = time().'_'.$origianlName;
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            
+            $data['file_name'] = $origianlName;
+            $data['file_path'] = '/storage/' . $filePath;
+        }
+        DB::table('products')->where('id', $id)->update($data);
+        return redirect('/supplier/product');
     }
 
     /**
@@ -82,8 +166,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $data = $request->all();
+        $col = DB::table('products')->select('file_path')->where('id', $data['id'])->get();
+        if ($col[0]->file_path != '') {
+            unlink($col[0]->file_path);
+        }
+        $return = DB::table('products')->where('id', $data['id'])->delete();
+        echo json_encode($return);
     }
 }
