@@ -942,7 +942,7 @@
             <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
                 <!--begin: Navigation -->
                 <div class="kt-notification">
-                    <a href="{{ route('profile') }}" class="kt-notification__item">
+                    <a href="{{ Auth::user()->type == 1 ? route('profile') : route('r_profile') }}" class="kt-notification__item">
                         <div class="kt-notification__item-icon">
                             <i class="flaticon2-calendar-3 kt-font-success"></i>
                         </div>

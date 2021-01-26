@@ -63,6 +63,16 @@ Route::middleware(['auth'])->group(function() {
         //     echo 'retailer dashboard';
         // });
         Route::get('/dashboard', 'App\Http\Controllers\Retailer\DashboardController@index');
+        // product
+        Route::get('/product', 'App\Http\Controllers\Retailer\ProductController@index')->name('r_product');
+        Route::get('/product/show/{id}', 'App\Http\Controllers\Retailer\ProductController@show')->name('product.show');
+
+        Route::post('/product/approve', 'App\Http\Controllers\Retailer\ProductController@approve')->name('product.approve');
+        Route::post('/product/getChanges', 'App\Http\Controllers\Retailer\ProductController@getChanges')->name('product.getChanges');
+        // approved product
+        Route::get('/approved_product', 'App\Http\Controllers\Retailer\ApprovedProductController@index')->name('approved_product');
+        // profile
+        Route::get('/profile', 'App\Http\Controllers\Retailer\ProfileController@index')->name('r_profile');
     });
 });
 

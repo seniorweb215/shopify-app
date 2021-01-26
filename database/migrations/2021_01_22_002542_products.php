@@ -21,6 +21,7 @@ class Products extends Migration
             $table->text('description');
             $table->float('price');
             $table->string('SKU')->unique();
+            $table->integer('total_quantity');
             $table->integer('quantity');
             $table->float('weight');
             $table->float('shipping_cost');

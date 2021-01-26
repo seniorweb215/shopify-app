@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Retailer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class DashboardController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +15,10 @@ class DashboardController extends Controller
     public function index()
     {
         $data = [
-            'info' => 'I am Retailer Dashboard page',
-            'link' => 'retailer/dashboard'
+            'info' => 'I am Retailer Profile page',
+            'link' => 'retailer/profile'
         ];
-        
-        return view('pages.r_dashboard', $data);
+        return view('pages.profile', $data);
     }
 
     /**

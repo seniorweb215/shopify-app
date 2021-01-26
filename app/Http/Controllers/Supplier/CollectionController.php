@@ -51,7 +51,6 @@ class CollectionController extends Controller
         $data['updated_at'] = date('Y-m-d H:i:s');
         $return = Category::store($data);
         return redirect('/supplier/category');
-        // print_r($return);exit;
     }
 
     /**

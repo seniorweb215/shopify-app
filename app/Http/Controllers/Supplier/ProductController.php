@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
+        // $user = Auth::user();
         $productData = DB::table('products')
                         ->join('users', 'users.id', '=', 'products.supplier_id')
                         ->join('categories', 'categories.id', '=', 'products.category_id')
@@ -74,10 +74,11 @@ class ProductController extends Controller
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
             
             $data['file_name'] = $origianlName;
-            $data['file_path'] = '/storage/' . $filePath;
+            $data['file_path'] = 'storage/' . $filePath;
         }
         
         $data['supplier_id'] = Auth::user()->id;
+        $data['total_quantity'] = $data['quantity'];
         $data['created_at'] = date('Y-m-d H:i:s');
         $data['updated_at'] = date('Y-m-d H:i:s');
         unset($data['_token']);
@@ -154,8 +155,9 @@ class ProductController extends Controller
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
             
             $data['file_name'] = $origianlName;
-            $data['file_path'] = '/storage/' . $filePath;
+            $data['file_path'] = 'storage/' . $filePath;
         }
+        
         DB::table('products')->where('id', $id)->update($data);
         return redirect('/supplier/product');
     }

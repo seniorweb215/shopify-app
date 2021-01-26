@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Retailer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
+use App\Models\Approve_history;
 
-class DashboardController extends Controller
+class ApprovedProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +18,20 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $data = [
-            'info' => 'I am Retailer Dashboard page',
-            'link' => 'retailer/dashboard'
-        ];
+        $list = DB::table('approve_histories')
+                ->join('products', 'products.id', '=', 'approve_histories.product_id')
+                ->join('categories', 'categories.id', '=', 'products.category_id')
+                ->join('users', 'users.id', '=', 'products.supplier_id')
+                ->where('approve_histories.retailer_id', Auth::user()->id)
+                ->select('approve_histories.*', 'products.category_id', 'products.supplier_id', 'products.title', 'categories.category_name', 'users.name')
+                ->get();
         
-        return view('pages.r_dashboard', $data);
+        $data = [
+            'info' => 'I am Retailer Approved Product page',
+            'link' => 'retailer/approved_product',
+            'data_list' => $list
+        ];
+        return view('pages.approved_product', $data);
     }
 
     /**

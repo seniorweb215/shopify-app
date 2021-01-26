@@ -6,7 +6,11 @@
     margin: 0 auto;
 }
 .table-max-column {
-    max-width: 180px;
+    max-width: 350px;
+    max-height: 50px;
+    overflow-y: scroll;
+    display: block;
+    /* margin-right: -73px; */
 }
 .form-group .alert {
     margin: 0;
