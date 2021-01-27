@@ -120,7 +120,7 @@ class ProductController extends Controller
             ]
         ];
         
-        $url = "https://860d69a73d37611405c9ea58cd210471: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@ecommerce-ninja9296.myshopify.com/admin/api/2021-01/products.json";
+        $url = "https://".env('SHOPIFY_API_KEY').":".env('SHOPIFY_API_PASS')."@".env('SHOPIFY_ADDRESS')."/admin/api/2021-01/products.json";
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
