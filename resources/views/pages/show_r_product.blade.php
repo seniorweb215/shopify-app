@@ -14,7 +14,7 @@
                         </div>
                         <div class="kt-portlet__head-toolbar">
                             <div class="kt-portlet__head-wrapper">
-                                <a href="{{ route('r_product') }}" class="btn btn-clean btn-icon-sm">
+                                <a href="{{ url()->previous() }}" class="btn btn-clean btn-icon-sm">
                                     <i class="la la-long-arrow-left"></i>
                                     Back
                                 </a>
@@ -30,7 +30,6 @@
                             <table class="table">
                                 <tbody>
                                     <tr><td><strong>Title: </strong>{{ $row[0]->title }}</td></tr>
-                                    <tr><td><strong>Category: </strong>{{ $row[0]->category_name }}</td></tr>
                                     <tr><td><strong>Supplier: </strong>{{ $row[0]->name }}</td></tr>
                                     <tr><td><strong>Description: </strong>{{ $row[0]->description }}</td></tr>
                                     <tr><td><strong>Price: </strong>{{ $row[0]->price }}</td></tr>

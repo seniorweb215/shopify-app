@@ -16,11 +16,10 @@ class Products extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->integer('category_id');
             $table->integer('supplier_id');
             $table->text('description');
             $table->float('price');
-            $table->string('SKU')->unique();
+            $table->string('SKU')->nullable();
             $table->integer('total_quantity');
             $table->integer('quantity');
             $table->float('weight');

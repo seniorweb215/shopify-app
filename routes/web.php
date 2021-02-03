@@ -27,9 +27,9 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', function () {
         $type = Auth::user()->type;
         if($type == 1) {
-            return redirect('/supplier/dashboard');
+            return redirect('/supplier/collection');
         } else {
-            return redirect('/retailer/dashboard');
+            return redirect('/retailer/suppliers');
         }
     })->middleware(['role:supplier,retailer'])->name('dashboard');
 
@@ -38,12 +38,24 @@ Route::middleware(['auth'])->group(function() {
         //     echo 'supplier dashboard';
         // });
         Route::get('/dashboard', 'App\Http\Controllers\Supplier\DashboardController@index');
+        Route::get('/requested', 'App\Http\Controllers\Supplier\RequestedController@index')->name('requested');
+        Route::post('/requested/receive', 'App\Http\Controllers\Supplier\RequestedController@receive')->name('requested.receive');
+        // super collection
+        Route::get('/collection', 'App\Http\Controllers\Supplier\SuperCollectionController@index')->name('collection');
+        Route::get('/collection/create', 'App\Http\Controllers\Supplier\SuperCollectionController@create')->name('collection.create');
+        Route::get('/collection/edit/{id}', 'App\Http\Controllers\Supplier\SuperCollectionController@edit')->name('collection.edit');
+
+        Route::post('/collection/destroy', 'App\Http\Controllers\Supplier\SuperCollectionController@destroy')->name('collection.destory');
+        Route::post('/collection/store', 'App\Http\Controllers\Supplier\SuperCollectionController@store')->name('collection.store');
+        Route::post('/collection/update/{id}', 'App\Http\Controllers\Supplier\SuperCollectionController@update')->name('collection.update');
         // collection
         Route::get('/category', 'App\Http\Controllers\Supplier\CollectionController@index')->name('category');
         Route::get('/category/create', 'App\Http\Controllers\Supplier\CollectionController@create')->name('category.create');
         Route::get('/category/edit/{id}', 'App\Http\Controllers\Supplier\CollectionController@edit')->name('category.edit');
+        Route::get('/category/show/{id}', 'App\Http\Controllers\Supplier\CollectionController@show')->name('category.show');
 
         Route::post('/category/destroy', 'App\Http\Controllers\Supplier\CollectionController@destroy')->name('category.destory');
+        Route::post('/category/edit_products', 'App\Http\Controllers\Supplier\CollectionController@edit_products')->name('category.edit_products');
         Route::post('/category/store', 'App\Http\Controllers\Supplier\CollectionController@store')->name('category.store');
         Route::post('/category/update/{id}', 'App\Http\Controllers\Supplier\CollectionController@update')->name('category.update');
         // product
@@ -63,8 +75,12 @@ Route::middleware(['auth'])->group(function() {
         //     echo 'retailer dashboard';
         // });
         Route::get('/dashboard', 'App\Http\Controllers\Retailer\DashboardController@index');
+        Route::get('/suppliers', 'App\Http\Controllers\Retailer\SupplierListController@index')->name('suppliers');
+        Route::post('/suppliers/request', 'App\Http\Controllers\Retailer\SupplierListController@request')->name('suppliers.request');
+        Route::get('/suppliers/getCollections/{id}', 'App\Http\Controllers\Retailer\SupplierListController@getCollections')->name('suppliers.getCollections');
+        Route::get('/suppliers/getCategories/{id}', 'App\Http\Controllers\Retailer\SupplierListController@getCategories')->name('suppliers.getCategories');
         // product
-        Route::get('/product', 'App\Http\Controllers\Retailer\ProductController@index')->name('r_product');
+        Route::get('/product/{id}', 'App\Http\Controllers\Retailer\ProductController@index')->name('r_product');
         Route::get('/product/show/{id}', 'App\Http\Controllers\Retailer\ProductController@show')->name('product.show');
 
         Route::post('/product/approve', 'App\Http\Controllers\Retailer\ProductController@approve')->name('product.approve');

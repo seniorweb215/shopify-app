@@ -5,9 +5,9 @@
                             2021&nbsp;&copy;&nbsp;<a href="/" target="_blank" class="kt-link">System</a>
                         </div>
                         <div class="kt-footer__menu">
-                            <a href="javascript:;" target="_blank" class="kt-footer__menu-link kt-link">About</a>
+                            <!-- <a href="javascript:;" target="_blank" class="kt-footer__menu-link kt-link">About</a>
                             <a href="javascript:;" target="_blank" class="kt-footer__menu-link kt-link">Team</a>
-                            <a href="javascript:;" target="_blank" class="kt-footer__menu-link kt-link">Contact</a>
+                            <a href="javascript:;" target="_blank" class="kt-footer__menu-link kt-link">Contact</a> -->
                         </div>
                     </div>
                 </div>

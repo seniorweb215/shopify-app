@@ -24,6 +24,43 @@
 /* label.red {
     color: #fd397a;
 } */
+#supplier_list_table .kt-badge--info:hover {
+    cursor: pointer;
+}
+.product-grid .kt-pricing-1__price {
+    margin-top: 0px !important;
+}
+.product-grid  .kt-pricing-1__btn {
+    margin: 0 !important;
+}
+.product-grid .kt-pricing-1__btn {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.product-grid  .kt-pricing-1__btn a {
+    padding: 5px 15px !important;
+}
+.product-grid  .kt-pricing-1__btn a:first-child {
+    margin-right: 5px !important;   
+}
+.product-grid .kt-pricing-1__visual {
+    position: relative;
+}
+.product-grid .kt-pricing-1__visual .img-wrapper {
+    padding-bottom: 100%;
+}
+.product-grid .kt-pricing-1__visual .img-wrapper img {
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+.product-grid .kt-pricing-1__subtitle {
+    margin-top: 15px;
+}
+
 @media (max-width: 1024px) {
     .kt-header-mobile .kt-header-mobile__logo img {
         max-width: 130px;

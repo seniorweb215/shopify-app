@@ -17,19 +17,26 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $productData = DB::table('products')
+        $row = DB::table('categories')->where('id', $id)->select('product_id', 'collection_id')->get();
+        $arr_ids = [];
+        $selected = [];
+        if ($row[0]->product_id != "") {
+            $arr_ids = explode(",", $row[0]->product_id);
+            $selected = DB::table('products')
                         ->join('users', 'users.id', '=', 'products.supplier_id')
-                        ->join('categories', 'categories.id', '=', 'products.category_id')
-                        ->where('products.status', 1)
-                        ->select('products.*', 'users.name', 'categories.category_name')
+                        ->whereIn('products.id', $arr_ids)
+                        ->select('products.*', 'users.name')
                         ->get();
+        }
         $data = [
             'info' => 'I am Retailer Product page',
-            'link' => 'retailer/product',
-            'data_list' => $productData
+            'link' => 'retailer/suppliers', //'retailer/product'
+            'data_list' => $selected,
+            'collection_id' => $row[0]->collection_id
         ];
+        
         return view('pages.r_product', $data);
     }
 
@@ -43,9 +50,9 @@ class ProductController extends Controller
     {
         $productData = DB::table('products')
                         ->join('users', 'users.id', '=', 'products.supplier_id')
-                        ->join('categories', 'categories.id', '=', 'products.category_id')
+                        // ->join('categories', 'categories.id', '=', 'products.category_id')
                         ->where('products.id', $id)
-                        ->select('products.*', 'users.name', 'categories.category_name')
+                        ->select('products.*', 'users.name')
                         ->get();
         $data = [
             'info' => 'I am Retailer Product details view page',

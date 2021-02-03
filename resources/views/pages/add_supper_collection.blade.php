@@ -9,12 +9,12 @@
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title">
-                                Add a new category
+                                Add a new collection
                             </h3>
                         </div>
                         <div class="kt-portlet__head-toolbar">
                             <div class="kt-portlet__head-wrapper">
-                                <a href="{{ route('category') }}" class="btn btn-clean btn-icon-sm">
+                                <a href="{{ route('collection') }}" class="btn btn-clean btn-icon-sm">
                                     <i class="la la-long-arrow-left"></i>
                                     Back
                                 </a>
@@ -22,25 +22,16 @@
                         </div>
                     </div>
                     <!--begin::Form-->
-                    <form class="kt-form" method="POST" action="{{ route('category.store') }}">
+                    <form class="kt-form" method="POST" action="{{ route('collection.store') }}">
                         @csrf
                         <div class="kt-portlet__body">
                             <div class="form-group">
-                                <label for="name">Category Name<span class="required-field">*</span></label>
-                                <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Category Name" value="" required="required">
+                                <label for="name">Collection Name<span class="required-field">*</span></label>
+                                <input type="text" class="form-control" id="collection_name" name="collection_name" placeholder="Collection Name" value="" required="required">
                             </div>
                             <div class="form-group">
-                                <label for="name">Collection<span class="required-field">*</span></label>
-                                <select class="custom-select form-control" id="collection_id" name="collection_id" required="required">
-                                    <option></option>
-                                    @foreach ($collection_list as $item)
-                                        <option value="{{ $item->id }}">{{ $item->collection_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="note">Category Note</label>
-                                <textarea class="form-control" id="note" name="note" placeholder="Category Note" rows="3"></textarea>
+                                <label for="note">collection Note</label>
+                                <textarea class="form-control" id="note" name="note" placeholder="collection Note" rows="3"></textarea>
                             </div>
                             <div class="form-group form-group-last">
                                 <label for="status">Status</label>
@@ -52,8 +43,8 @@
                         </div>
                         <div class="kt-portlet__foot">
                             <div class="kt-form__actions">
-                                <button type="submit" class="btn btn-primary">Save Category</button>
-                                <a href="{{ route('category') }}" class="btn btn-secondary">Cancel</a>
+                                <button type="submit" class="btn btn-primary">Save Collection</button>
+                                <a href="{{ route('collection') }}" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>
                     </form>

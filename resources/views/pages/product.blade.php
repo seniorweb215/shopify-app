@@ -38,7 +38,6 @@
                                 <th>weight(kg)</th>
                                 <th>Shipping cost</th>
                                 <!-- <th>Shipping date</th> -->
-                                <th>Category</th>
                                 <th>Supplier</th>
                                 <th>Status</th>
                                 <th>Actions</th>
@@ -56,7 +55,6 @@
                                     <td>{{ $data->quantity }}</td>
                                     <td>{{ $data->weight }}</td>
                                     <td>{{ $data->shipping_cost }}</td>
-                                    <td>{{ $data->category_name }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td><span class="kt-badge  kt-badge--<?php echo $data->status == 1 ? 'success' : 'brand'; ?> kt-badge--inline kt-badge--pill">{{ $data->status == 1 ? 'Active' : 'Inactive' }}</span></td>
                                     <!-- <td>{{ date("Y-m-d", strtotime($data->created_at)) }}</td> -->

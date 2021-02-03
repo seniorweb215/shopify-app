@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Supplier;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 
 class CollectionController extends Controller
@@ -14,7 +16,8 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        $categoryData = Category::getData();
+        $categoryData = Category::getData(Auth::user()->id);
+        // print_r($categoryData);exit;
         $data = [
             'info' => 'I am Supplier Category page',
             'link' => 'supplier/category',
@@ -30,9 +33,11 @@ class CollectionController extends Controller
      */
     public function create()
     {
+        $collection_list = DB::table('collections')->where('status', '1')->where('sup_id', Auth::user()->id)->get();
         $data = [
             'info' => 'I am Supplier Category add page',
-            'link' => 'supplier/category'
+            'link' => 'supplier/category',
+            'collection_list' => $collection_list
         ];
         return view('pages.add_collection', $data);
     }
@@ -61,7 +66,7 @@ class CollectionController extends Controller
      */
     public function show($id)
     {
-        //
+        print_r($id);exit;
     }
 
     /**
@@ -72,13 +77,44 @@ class CollectionController extends Controller
      */
     public function edit($id)
     {
+        $collection_list = DB::table('collections')->where('status', '1')->where('sup_id', Auth::user()->id)->get();
         $row = Category::getRow($id);
+        $products = DB::table('products')->where('status', '1')->where('supplier_id', Auth::user()->id)->get();
+
+       $arr_ids = [];
+       $selected = [];
+        if ($row[0]->product_id != "") {
+            $arr_ids = explode(",", $row[0]->product_id);
+            $selected = DB::table('products')->whereIn('id', $arr_ids)->get();
+            // $data['selected'] = $selected;
+            // $data['arr_ids'] = $arr_ids;
+        }
+
         $data = [
             'info' => 'I am Supplier Category edit page',
             'link' => 'supplier/category',
-            'row' => $row
+            'row' => $row,
+            'collection_list' => $collection_list,
+            'products' => $products,
+            'selected' => $selected,
+            'arr_ids' => $arr_ids
         ];
+        
         return view('pages.edit_collection', $data);
+    }
+
+    /**
+     * Edit products
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function edit_products(Request $request)
+    {
+        $data = $request->all();
+        $id = $data['id'];
+        $updated = DB::table('categories')->where('id', $id)->update(['product_id' => $data['ids']]);
+        echo json_encode($updated);
     }
 
     /**
@@ -93,7 +129,6 @@ class CollectionController extends Controller
         $data = $request->all();
         unset($data['_token']);
         $data['updated_at'] = date('Y-m-d H:i:s');
-        
         $updated = Category::updateRow($data, $id);
         return redirect('/supplier/category');
     }

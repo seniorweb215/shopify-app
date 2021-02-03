@@ -10,8 +10,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">
     <!--end::Fonts -->
 
-    <!--begin::Page Vendors Styles(used by this page) -->
+    <!--begin::Page Vendors Styles(used by dashboard page) -->
     <link rel="stylesheet" href="{{ asset('plugins/fullcalendar/fullcalendar-bundle.css') }}">
+    <!--end::Page Vendors Styles -->
+    <!--begin::Page Vendors Styles(used by product page) -->
+    <link rel="stylesheet" href="{{ asset('css/product.css') }}">
     <!--end::Page Vendors Styles -->
 
     <!--begin::Global Theme Styles(used by all pages) -->

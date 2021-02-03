@@ -20,8 +20,8 @@ class ProductController extends Controller
         // $user = Auth::user();
         $productData = DB::table('products')
                         ->join('users', 'users.id', '=', 'products.supplier_id')
-                        ->join('categories', 'categories.id', '=', 'products.category_id')
-                        ->select('products.*', 'users.name', 'categories.category_name')
+                        // ->join('categories', 'categories.id', '=', 'products.category_id')
+                        ->select('products.*', 'users.name')
                         ->get();
         $data = [
             'info' => 'I am Supplier Product page',
@@ -38,12 +38,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $category_list = DB::table('categories')->where('status', '1')->get();
+        // $category_list = DB::table('categories')->where('status', '1')->get();
         $data = [
             'info' => 'I am Supplier Product add page',
-            'link' => 'supplier/product',
-            'category_list' => $category_list
-
+            'link' => 'supplier/product'
         ];
         return view('pages.add_product', $data);
     }
@@ -59,7 +57,6 @@ class ProductController extends Controller
         $request->validate([
             'title' => 'required|unique:products,title', 
             'price' => 'required|numeric|min:0', 
-            'category_id' => 'required|numeric|min:1',
             'quantity' => 'required|numeric|min:1|',
             'weight' => 'numeric|min:0',
             'shipping_cost' => 'numeric|min:0',
@@ -107,12 +104,10 @@ class ProductController extends Controller
     public function edit($id)
     {
         
-        $category_list = DB::table('categories')->where('status', '1')->get();
         $product_list = DB::table('products')->where('id', $id)->get();
         $data = [
             'info' => 'I am Supplier Product edit page',
             'link' => 'supplier/product',
-            'category_list' => $category_list,
             'row' => $product_list
 
         ];
@@ -131,7 +126,6 @@ class ProductController extends Controller
         $request->validate([
             'title' => 'required', 
             'price' => 'required|numeric|min:0', 
-            'category_id' => 'required|numeric|min:1',
             'quantity' => 'required|numeric|min:1|',
             'weight' => 'numeric|min:0',
             'shipping_cost' => 'numeric|min:0',

@@ -69,6 +69,20 @@
                                 <h4 class="kt-menu__section-text">manage</h4>
                                 <i class="kt-menu__section-icon flaticon-more-v2"></i>
                             </li>
+                            <li class="kt-menu__item <?php echo $link == 'supplier/collection' ? 'kt-menu__item--active': ''; ?>" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                                <a href="/supplier/collection" class="kt-menu__link kt-menu__toggle">
+                                    <span class="kt-menu__link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24"></rect>
+                                                <path d="M10,4 L21,4 C21.5522847,4 22,4.44771525 22,5 L22,7 C22,7.55228475 21.5522847,8 21,8 L10,8 C9.44771525,8 9,7.55228475 9,7 L9,5 C9,4.44771525 9.44771525,4 10,4 Z M10,10 L21,10 C21.5522847,10 22,10.4477153 22,11 L22,13 C22,13.5522847 21.5522847,14 21,14 L10,14 C9.44771525,14 9,13.5522847 9,13 L9,11 C9,10.4477153 9.44771525,10 10,10 Z M10,16 L21,16 C21.5522847,16 22,16.4477153 22,17 L22,19 C22,19.5522847 21.5522847,20 21,20 L10,20 C9.44771525,20 9,19.5522847 9,19 L9,17 C9,16.4477153 9.44771525,16 10,16 Z" fill="#000000"></path>
+                                                <rect fill="#000000" opacity="0.3" x="2" y="4" width="5" height="16" rx="1"></rect>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="kt-menu__link-text">Collections</span>
+                                </a>
+                            </li>
                             <li class="kt-menu__item <?php echo $link == 'supplier/category' ? 'kt-menu__item--active': ''; ?>" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                                 <a href="/supplier/category" class="kt-menu__link kt-menu__toggle">
                                     <span class="kt-menu__link-icon">
@@ -95,6 +109,20 @@
                                         </svg>
                                     </span>
                                     <span class="kt-menu__link-text">Product</span>
+                                </a>
+                            </li>
+                            <li class="kt-menu__item <?php echo $link == 'supplier/requested' ? 'kt-menu__item--active': ''; ?>" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                                <a href="{{ route('requested') }}" class="kt-menu__link kt-menu__toggle">
+                                    <span class="kt-menu__link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24"/>
+                                                <path d="M13.2070325,4 C13.0721672,4.47683179 13,4.97998812 13,5.5 C13,8.53756612 15.4624339,11 18.5,11 C19.0200119,11 19.5231682,10.9278328 20,10.7929675 L20,17 C20,18.6568542 18.6568542,20 17,20 L7,20 C5.34314575,20 4,18.6568542 4,17 L4,7 C4,5.34314575 5.34314575,4 7,4 L13.2070325,4 Z" fill="#000000"/>
+                                                <circle fill="#000000" opacity="0.3" cx="18.5" cy="5.5" r="2.5"/>
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="kt-menu__link-text">Requested List From Retailers</span>
                                 </a>
                             </li>
                             <li class="kt-menu__item <?php echo $link == 'supplier/profile' ? 'kt-menu__item--active': ''; ?>" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
@@ -149,7 +177,21 @@
                                 <h4 class="kt-menu__section-text">manage</h4>
                                 <i class="kt-menu__section-icon flaticon-more-v2"></i>
                             </li>
-                            <li class="kt-menu__item <?php echo $link == 'retailer/product' ? 'kt-menu__item--active': ''; ?>" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                            <li class="kt-menu__item <?php echo $link == 'retailer/suppliers' ? 'kt-menu__item--active': ''; ?>" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                                <a href="/retailer/suppliers" class="kt-menu__link kt-menu__toggle">
+                                    <span class="kt-menu__link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <rect fill="#000000" x="4" y="4" width="7" height="7" rx="1.5" />
+                                                <path d="M5.5,13 L9.5,13 C10.3284271,13 11,13.6715729 11,14.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L5.5,20 C4.67157288,20 4,19.3284271 4,18.5 L4,14.5 C4,13.6715729 4.67157288,13 5.5,13 Z M14.5,4 L18.5,4 C19.3284271,4 20,4.67157288 20,5.5 L20,9.5 C20,10.3284271 19.3284271,11 18.5,11 L14.5,11 C13.6715729,11 13,10.3284271 13,9.5 L13,5.5 C13,4.67157288 13.6715729,4 14.5,4 Z M14.5,13 L18.5,13 C19.3284271,13 20,13.6715729 20,14.5 L20,18.5 C20,19.3284271 19.3284271,20 18.5,20 L14.5,20 C13.6715729,20 13,19.3284271 13,18.5 L13,14.5 C13,13.6715729 13.6715729,13 14.5,13 Z" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                    <span class="kt-menu__link-text">Product View by Suppliers</span>
+                                </a>
+                            </li>
+                            <!-- <li class="kt-menu__item <?php echo $link == 'retailer/product' ? 'kt-menu__item--active': ''; ?>" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                                 <a href="/retailer/product" class="kt-menu__link kt-menu__toggle">
                                     <span class="kt-menu__link-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
@@ -162,7 +204,7 @@
                                     </span>
                                     <span class="kt-menu__link-text">Product</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="kt-menu__item <?php echo $link == 'retailer/approved_product' ? 'kt-menu__item--active': ''; ?>" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                                 <a href="/retailer/approved_product" class="kt-menu__link kt-menu__toggle">
                                     <span class="kt-menu__link-icon">

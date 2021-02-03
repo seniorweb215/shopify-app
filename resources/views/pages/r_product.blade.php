@@ -14,60 +14,34 @@
                 </div>
                 <div class="kt-portlet__head-toolbar">
                     <div class="kt-portlet__head-wrapper">
-                        <div class="dropdown dropdown-inline">
-                            <!--<a href="{{ route('product.create') }}" id="add_item" class="btn btn-brand btn-icon-sm"><i class="flaticon2-plus"></i> Add New</a> -->
-                        </div>
+                        <a href="/retailer/suppliers/getCategories/{{ $collection_id }}" class="btn btn-clean btn-icon-sm">
+                            <i class="la la-long-arrow-left"></i>
+                            Back
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="kt-portlet__body kt-portlet__body--fit">
-                <!--begin: Datatable -->
-                <div class="kt-datatable" id="local_data" style="display: block;">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>image</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Price(wholesale)</th>
-                                <th>SKU</th>
-                                <!-- total_quantity - approved quantity - order quantity -->
-                                <th>Inventory</th>
-                                <th>weight(kg)</th>
-                                <th>Shipping cost</th>
-                                <!-- <th>Shipping date</th> -->
-                                <th>Category</th>
-                                <th>Supplier</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($data_list as $key => $data)
-                                <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td><img src="{{ asset($data->file_path) }}" alt="" style="max-width: 40px;"></td>
-                                    <td>{{ $data->title }}</td>
-                                    <td class="table-max-column">{{ $data->description }}</td>
-                                    <td>{{ $data->price }}</td>
-                                    <td>{{ $data->SKU }}</td>
-                                    <td>{{ $data->quantity }}</td>
-                                    <td>{{ $data->weight }}</td>
-                                    <td>{{ $data->shipping_cost }}</td>
-                                    <td>{{ $data->category_name }}</td>
-                                    <td>{{ $data->name }}</td>
-                                    <!-- <td><span class="kt-badge  kt-badge--<?php echo $data->status == 1 ? 'success' : 'brand'; ?> kt-badge--inline kt-badge--pill">{{ $data->status == 1 ? 'Active' : 'Inactive' }}</span></td> -->
-                                    <!-- <td>{{ date("Y-m-d", strtotime($data->created_at)) }}</td> -->
-                                    <td>
-                                        <a href="javascript:;" data-id="{{ $data->id }}" class="approve-item btn btn-sm btn-clean btn-icon btn-icon-md" title="Approve product"><i class="flaticon-list-3"></i></a>
-                                        <a href="/retailer/product/show/{{ $data->id }}" class="view-item btn btn-sm btn-clean btn-icon btn-icon-md" title="Detail view"><i class="fas fa-eye"></i></a> 
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="kt-pricing-1 kt-pricing-1--fixed product-grid">
+                    <div class="kt-pricing-1__items row">
+                        @foreach($data_list as $key => $data)
+                            <div class="kt-pricing-1__item col-lg-3">
+                                <div class="kt-pricing-1__visual">
+                                    <div class="img-wrapper">
+                                        <img src="{{ asset($data->file_path) }}" alt="" style="max-width: 300px;">
+                                    </div>
+                                </div>
+                                <h2 class="kt-pricing-1__subtitle">{{ $data->title }}</h2>
+                                <span class="kt-pricing-1__price">{{ $data->price }}<span class="kt-pricing-1__label">$</span></span>
+                                <div class="kt-pricing-1__btn">
+                                    <!-- <button type="button" class="btn btn-brand btn-wide btn-bold btn-upper">Get For Free</button> -->
+                                    <a href="javascript:;" data-id="{{ $data->id }}" class="approve-item btn btn-brand btn-wide btn-bold btn-upper" title="Approve product">Approve</a>
+                                    <a href="/retailer/product/show/{{ $data->id }}" class="view-item btn btn-success btn-wide btn-bold btn-upper" title="Detail view">Detail view</a> 
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-                <!--end: Datatable -->
             </div>
         </div>      
     </div>

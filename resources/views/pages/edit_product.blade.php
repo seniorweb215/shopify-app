@@ -49,18 +49,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <label for="note">Description</label>
                                     <textarea class="form-control" id="description" name="description" placeholder="Description" rows="3">{{ $row[0]->description }}</textarea>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="name">Category<span class="required-field">*</span></label>
-                                    <select class="custom-select form-control" id="category_id" name="category_id" required="required">
-                                        <option></option>
-                                        @foreach ($category_list as $item)
-                                            <option value="{{ $item->id }}" {{ $row[0]->category_id == $item->id ? 'selected' : '' }}>{{ $item->category_name }}</option>
-                                        @endforeach
-                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
