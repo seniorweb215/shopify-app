@@ -20,10 +20,9 @@ class ApprovedProductController extends Controller
     {
         $list = DB::table('approve_histories')
                 ->join('products', 'products.id', '=', 'approve_histories.product_id')
-                ->join('categories', 'categories.id', '=', 'products.category_id')
                 ->join('users', 'users.id', '=', 'products.supplier_id')
                 ->where('approve_histories.retailer_id', Auth::user()->id)
-                ->select('approve_histories.*', 'products.category_id', 'products.supplier_id', 'products.title', 'categories.category_name', 'users.name')
+                ->select('approve_histories.*', 'products.supplier_id', 'products.title', 'users.name')
                 ->get();
         
         $data = [

@@ -30,13 +30,12 @@
 .product-grid .kt-pricing-1__price {
     margin-top: 0px !important;
 }
-.product-grid  .kt-pricing-1__btn {
-    margin: 0 !important;
-}
 .product-grid .kt-pricing-1__btn {
     align-items: center;
     display: flex;
     justify-content: center;
+    margin-top: 0 !important;
+    margin-bottom: 15 !important;
 }
 .product-grid  .kt-pricing-1__btn a {
     padding: 5px 15px !important;
@@ -48,7 +47,7 @@
     position: relative;
 }
 .product-grid .kt-pricing-1__visual .img-wrapper {
-    padding-bottom: 100%;
+    padding-bottom: 85%;
 }
 .product-grid .kt-pricing-1__visual .img-wrapper img {
     position: absolute;

@@ -28,7 +28,6 @@
                             <tr>
                                 <th>#</th>
                                 <th>Title</th>
-                                <th>Category</th>
                                 <th>Supplier</th>
                                 <th>Description</th>
                                 <th>Price</th>
@@ -42,7 +41,6 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $data->title }}</td>
-                                    <td>{{ $data->category_name }}</td>
                                     <td>{{ $data->name }}</td>
                                     <td style="max-width: 350px">{{ $data->approved_description }}</td>
                                     <td>{{ $data->approved_price }}</td>

@@ -28,7 +28,7 @@
                             <div class="kt-pricing-1__item col-lg-3">
                                 <div class="kt-pricing-1__visual">
                                     <div class="img-wrapper">
-                                        <img src="{{ asset($data->file_path) }}" alt="" style="max-width: 300px;">
+                                        <img src="{{ asset($data->file_path) }}" alt="" style="width: 100%;">
                                     </div>
                                 </div>
                                 <h2 class="kt-pricing-1__subtitle">{{ $data->title }}</h2>
