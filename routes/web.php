@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/dashboard', function () {
         $type = Auth::user()->type;
         if($type == 1) {
-            return redirect('/supplier/collection');
+            return redirect('/supplier/category');
         } else {
             return redirect('/retailer/suppliers');
         }
@@ -68,6 +68,7 @@ Route::middleware(['auth'])->group(function() {
         Route::post('/product/destroy', 'App\Http\Controllers\Supplier\ProductController@destroy')->name('product.destory');
         // profile
         Route::get('/profile', 'App\Http\Controllers\Supplier\ProfileController@index')->name('profile');
+        Route::post('/profile/update/{id}', 'App\Http\Controllers\Supplier\ProfileController@update')->name('profile.update');
     });
 
     Route::prefix('retailer')->middleware(['role:retailer'])->group(function() {
@@ -89,6 +90,7 @@ Route::middleware(['auth'])->group(function() {
         Route::get('/approved_product', 'App\Http\Controllers\Retailer\ApprovedProductController@index')->name('approved_product');
         // profile
         Route::get('/profile', 'App\Http\Controllers\Retailer\ProfileController@index')->name('r_profile');
+        Route::post('/profile/update/{id}', 'App\Http\Controllers\Retailer\ProfileController@update')->name('r_profile.update');
     });
 });
 

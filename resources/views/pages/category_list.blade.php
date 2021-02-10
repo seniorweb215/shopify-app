@@ -9,12 +9,12 @@
                         <i class="kt-font-brand flaticon2-line-chart"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        All Categories
+                        All Collections
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
                     <div class="kt-portlet__head-wrapper">
-                        <a href="/retailer/suppliers/getCollections/{{ $sup_id }}" class="btn btn-clean btn-icon-sm">
+                        <a href="{{ route('suppliers') }}" class="btn btn-clean btn-icon-sm">
                             <i class="la la-long-arrow-left"></i>
                             Back
                         </a>

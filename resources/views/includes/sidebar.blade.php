@@ -69,7 +69,7 @@
                                 <h4 class="kt-menu__section-text">manage</h4>
                                 <i class="kt-menu__section-icon flaticon-more-v2"></i>
                             </li>
-                            <li class="kt-menu__item <?php echo $link == 'supplier/collection' ? 'kt-menu__item--active': ''; ?>" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                            <!-- <li class="kt-menu__item <?php echo $link == 'supplier/collection' ? 'kt-menu__item--active': ''; ?>" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                                 <a href="/supplier/collection" class="kt-menu__link kt-menu__toggle">
                                     <span class="kt-menu__link-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
@@ -82,7 +82,7 @@
                                     </span>
                                     <span class="kt-menu__link-text">Collections</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="kt-menu__item <?php echo $link == 'supplier/category' ? 'kt-menu__item--active': ''; ?>" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
                                 <a href="/supplier/category" class="kt-menu__link kt-menu__toggle">
                                     <span class="kt-menu__link-icon">
@@ -94,7 +94,7 @@
                                             </g>
                                         </svg>
                                     </span>
-                                    <span class="kt-menu__link-text">Categories</span>
+                                    <span class="kt-menu__link-text">Collections</span>
                                 </a>
                             </li>
                             <li class="kt-menu__item <?php echo $link == 'supplier/product' ? 'kt-menu__item--active': ''; ?>" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">

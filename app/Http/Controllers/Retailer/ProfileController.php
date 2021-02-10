@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Retailer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -14,9 +17,15 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        $profile = DB::table('users')
+                        ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
+                        ->where('users.id', Auth::user()->id)
+                        ->select('users.id as user_table_id', 'users.name', 'users.email', 'user_details.*')
+                        ->get();
         $data = [
             'info' => 'I am Retailer Profile page',
-            'link' => 'retailer/profile'
+            'link' => 'retailer/profile',
+            'row' => $profile
         ];
         return view('pages.profile', $data);
     }
@@ -73,9 +82,54 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        // Hash::make($request->password)
+        $data = $request->all();
+        
+        $data['updated_at'] = date('Y-m-d H:i:s');
+        
+        $user_table_data = [];
+        $user_table_data['name'] = $data['name'];
+        unset($data['name']);
+        $user_table_data['password'] = Hash::make( $data['password']);
+        unset($data['password']);
+        $user_table_data['email'] = $data['email'];
+        unset($data['email']);
+        
+        $user_table_data['updated_at'] = date('Y-m-d H:i:s');
+        
+        if ($request->file()) {
+            $origianlName = $request->file->getClientOriginalName();
+            $fileName = time().'_'.$origianlName;
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            
+            $data['photo_name'] = $origianlName;
+            $data['photo_path'] = 'storage/' . $filePath;
+        }
+        
+        unset($data['_token']);
+        unset($data['file']);
 
+        if ($data['id'] != '') {
+            if ($request->file()) {
+                $col = DB::table('user_details')->select('photo_path')->where('id', $data['id'])->get();
+                if ($col[0]->photo_path != '') { //file_exists('')
+                    // Storage::exists(public_path('img/dummy.jpg'))
+                    unlink($col[0]->photo_path);    
+                }
+            }
+            $details_id = $data['id'];
+            unset($data['id']);
+            DB::table('user_details')->where('id', $details_id)->update($data);
+        } else {
+            unset($data['id']);
+            $data['user_id'] = $id;
+            $data['created_at'] = date('Y-m-d H:i:s');
+            DB::table('user_details')->insert($data);
+        }
+
+        DB::table('users')->where('id', $id)->update($user_table_data);
+        return redirect('/retailer/profile');
+    }
     /**
      * Remove the specified resource from storage.
      *

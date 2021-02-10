@@ -13,9 +13,11 @@ class SupplierListController extends Controller
     {
         $list = DB::table('users')
                         ->leftJoin('request', 'request.recipient', '=', 'users.id')
+                        ->leftJoin('user_details', 'user_details.user_id', '=', 'users.id')
                         ->where('users.type', 1)
-                        ->select('users.*', 'request.sender', 'request.request', 'request.status')
+                        ->select('users.*', 'request.sender', 'request.request', 'request.status', 'user_details.company_name', 'user_details.company_address', 'user_details.description', 'user_details.photo_path', 'user_details.photo_name')
                         ->get();
+        
         $data = [
             'info' => 'I am Retailer Supplier list page',
             'link' => 'retailer/suppliers',
@@ -39,27 +41,27 @@ class SupplierListController extends Controller
         echo json_encode($return);
     }
 
-    public function getCollections($id)
-    {
-        $list = DB::table('collections')->where('sup_id', $id)->get();
-        $data = [
-            'info' => 'I am Retailer Collection list page',
-            'link' => 'retailer/suppliers',
-            'data_list' => $list
-        ];
+    // public function getCollections($id)
+    // {
+    //     $list = DB::table('collections')->where('sup_id', $id)->get();
+    //     $data = [
+    //         'info' => 'I am Retailer Collection list page',
+    //         'link' => 'retailer/suppliers',
+    //         'data_list' => $list
+    //     ];
         
-        return view('pages.collection_list', $data);
-    }
+    //     return view('pages.collection_list', $data);
+    // }
 
     public function getCategories($id)
     {
-        $sup_id = DB::table('collections')->where('id', $id)->select('sup_id')->get();
-        $list = DB::table('categories')->where('collection_id', $id)->get();
+        // $sup_id = DB::table('collections')->where('id', $id)->select('sup_id')->get();
+        $list = DB::table('categories')->where('sup_id', $id)->get();
         $data = [
             'info' => 'I am Retailer Category list page',
             'link' => 'retailer/suppliers',
             'data_list' => $list,
-            'sup_id' => $sup_id[0]->sup_id
+            'sup_id' => $id
         ];
         return view('pages.category_list', $data);
     }

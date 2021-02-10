@@ -9,7 +9,7 @@
                         <i class="kt-font-brand flaticon2-line-chart"></i>
                     </span>
                     <h3 class="kt-portlet__head-title">
-                        All Categories
+                        All Collections
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
@@ -28,7 +28,6 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Collection Name</th>
                                 <th>Note</th>
                                 <th>Status</th>
                                 <th>Created</th>
@@ -40,7 +39,6 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td><a href="/supplier/category/edit/{{ $data->id }}">{{ $data->category_name }}</a></td>
-                                    <td>{{ $data->collection_name }}</td>
                                     <td>{{ $data->note }}</td>
                                     <td><span class="kt-badge  kt-badge--<?php echo $data->status == 1 ? 'success' : 'brand'; ?> kt-badge--inline kt-badge--pill">{{ $data->status == 1 ? 'Active' : 'Inactive' }}</span></td>
                                     <td>{{ date("Y-m-d", strtotime($data->created_at)) }}</td>

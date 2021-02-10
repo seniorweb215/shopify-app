@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function index($id)
     {
-        $row = DB::table('categories')->where('id', $id)->select('product_id', 'collection_id')->get();
+        $row = DB::table('categories')->where('id', $id)->select('product_id', 'sup_id')->get();
         $arr_ids = [];
         $selected = [];
         if ($row[0]->product_id != "") {
@@ -34,7 +34,7 @@ class ProductController extends Controller
             'info' => 'I am Retailer Product page',
             'link' => 'retailer/suppliers', //'retailer/product'
             'data_list' => $selected,
-            'collection_id' => $row[0]->collection_id
+            'sup_id' => $row[0]->sup_id
         ];
         
         return view('pages.r_product', $data);

@@ -9,7 +9,7 @@
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title">
-                                Edit category: {{ $row[0]->category_name }}
+                                Edit collection: {{ $row[0]->category_name }}
                             </h3>
                         </div>
                         <div class="kt-portlet__head-toolbar">
@@ -26,21 +26,13 @@
                         @csrf
                         <div class="kt-portlet__body">
                             <div class="form-group">
-                                <label for="name">Category Name<span class="required-field">*</span></label>
-                                <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Category Name" value="{{ $row[0]->category_name }}" required="required">
+                                <label for="name">Collection Name<span class="required-field">*</span></label>
+                                <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Collection Name" value="{{ $row[0]->category_name }}" required="required">
                             </div>
+                            
                             <div class="form-group">
-                                <label for="name">Collection<span class="required-field">*</span></label>
-                                <select class="custom-select form-control" id="collection_id" name="collection_id" required="required">
-                                    <option></option>
-                                    @foreach ($collection_list as $item)
-                                        <option value="{{ $item->id }}" {{ $row[0]->collection_id == $item->id ? 'selected' : '' }}>{{ $item->collection_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="note">Category Note</label>
-                                <textarea class="form-control" id="note" name="note" placeholder="Category Note" rows="3">{{ $row[0]->note }}</textarea>
+                                <label for="note">Collection Note</label>
+                                <textarea class="form-control" id="note" name="note" placeholder="Collection Note" rows="3">{{ $row[0]->note }}</textarea>
                             </div>
                             <div class="form-group form-group-last">
                                 <label for="status">Status</label>
@@ -52,7 +44,7 @@
                         </div>
                         <div class="kt-portlet__foot">
                             <div class="kt-form__actions">
-                                <button type="submit" class="btn btn-primary">Save Category</button>
+                                <button type="submit" class="btn btn-primary">Save Collection</button>
                                 <a href="{{ route('category') }}" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>

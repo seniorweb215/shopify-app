@@ -14,7 +14,7 @@
                 </div>
                 <div class="kt-portlet__head-toolbar">
                     <div class="kt-portlet__head-wrapper">
-                        <a href="/retailer/suppliers/getCategories/{{ $collection_id }}" class="btn btn-clean btn-icon-sm">
+                        <a href="/retailer/suppliers/getCategories/{{ $sup_id }}" class="btn btn-clean btn-icon-sm">
                             <i class="la la-long-arrow-left"></i>
                             Back
                         </a>

@@ -24,8 +24,12 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>photo</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Company name</th>
+                                <th>Company address</th>
+                                <th>description</th>
                                 <th>Created</th>
                                 <th>Status</th>
                             </tr>
@@ -36,16 +40,20 @@
                                 @if ($data->sender == Auth::user()->id || $data->sender == '')
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
+                                        <td><img src="{{ asset($data->photo_path) }}" alt="" style="width: 60px;"></td>
                                         <?php 
                                             if ($data->status == 1) {
                                         ?>
-                                            <td><a href="/retailer/suppliers/getCollections/{{ $data->id }}">{{ $data->name }}</a></td>
+                                            <td><a href="/retailer/suppliers/getCategories/{{ $data->id }}">{{ $data->name }}</a></td>
                                         <?php
                                             } else {
                                         ?>
                                             <td>{{ $data->name }}</td>
                                         <?php } ?>
                                         <td>{{ $data->email }}</td>
+                                        <td>{{ $data->company_name }}</td>
+                                        <td>{{ $data->company_address }}</td>
+                                        <td>{{ $data->description }}</td>
                                         <td>{{ date("Y-m-d", strtotime($data->created_at)) }}</td>
                                         <?php 
                                             if ($data->sender == '') {

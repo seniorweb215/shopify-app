@@ -17,7 +17,6 @@ class CollectionController extends Controller
     public function index()
     {
         $categoryData = Category::getData(Auth::user()->id);
-        // print_r($categoryData);exit;
         $data = [
             'info' => 'I am Supplier Category page',
             'link' => 'supplier/category',
@@ -33,11 +32,9 @@ class CollectionController extends Controller
      */
     public function create()
     {
-        $collection_list = DB::table('collections')->where('status', '1')->where('sup_id', Auth::user()->id)->get();
         $data = [
             'info' => 'I am Supplier Category add page',
             'link' => 'supplier/category',
-            'collection_list' => $collection_list
         ];
         return view('pages.add_collection', $data);
     }
@@ -54,6 +51,7 @@ class CollectionController extends Controller
         unset($data['_token']);
         $data['created_at'] = date('Y-m-d H:i:s');
         $data['updated_at'] = date('Y-m-d H:i:s');
+        $data['sup_id'] = Auth::user()->id;
         $return = Category::store($data);
         return redirect('/supplier/category');
     }
@@ -77,7 +75,6 @@ class CollectionController extends Controller
      */
     public function edit($id)
     {
-        $collection_list = DB::table('collections')->where('status', '1')->where('sup_id', Auth::user()->id)->get();
         $row = Category::getRow($id);
         $products = DB::table('products')->where('status', '1')->where('supplier_id', Auth::user()->id)->get();
 
@@ -94,7 +91,6 @@ class CollectionController extends Controller
             'info' => 'I am Supplier Category edit page',
             'link' => 'supplier/category',
             'row' => $row,
-            'collection_list' => $collection_list,
             'products' => $products,
             'selected' => $selected,
             'arr_ids' => $arr_ids
