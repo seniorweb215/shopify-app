@@ -21,6 +21,7 @@ class ProductController extends Controller
         $productData = DB::table('products')
                         ->join('users', 'users.id', '=', 'products.supplier_id')
                         // ->join('categories', 'categories.id', '=', 'products.category_id')
+                        ->where('supplier_id', Auth::user()->id)
                         ->select('products.*', 'users.name')
                         ->get();
         $data = [
